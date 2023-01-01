@@ -36,3 +36,59 @@ func Error(w http.ResponseWriter, data interface{}, statusCode int, messages ...
 		panic(err)
 	}
 }
+
+func ErrorBadRequest(w http.ResponseWriter, messages ...string) {
+	if len(messages) == 0 {
+		messages = append(messages, "Bad Request")
+	}
+	Error(w, messages[0], http.StatusBadRequest)
+}
+
+func ErrorNotFound(w http.ResponseWriter, messages ...string) {
+	if len(messages) == 0 {
+		messages = append(messages, "Not Found")
+	}
+	Error(w, messages[0], http.StatusNotFound)
+}
+
+func ErrorUnAuthorized(w http.ResponseWriter, messages ...string) {
+	if len(messages) == 0 {
+		messages = append(messages, "Not Logged In")
+	}
+	Error(w, messages[0], http.StatusUnauthorized)
+}
+
+func ErrorForbidden(w http.ResponseWriter, messages ...string) {
+	if len(messages) == 0 {
+		messages = append(messages, "Access Denied")
+	}
+	Error(w, messages[0], http.StatusForbidden)
+}
+
+func ErrorInternalServerError(w http.ResponseWriter, messages ...string) {
+	if len(messages) == 0 {
+		messages = append(messages, "Something Went Wrong")
+	}
+	Error(w, messages[0], http.StatusInternalServerError)
+}
+
+func ErrorMethodNotAllowed(w http.ResponseWriter, messages ...string) {
+	if len(messages) == 0 {
+		messages = append(messages, "Method Not Allowed")
+	}
+	Error(w, messages[0], http.StatusMethodNotAllowed)
+}
+
+func ErrorTooManyRequests(w http.ResponseWriter, messages ...string) {
+	if len(messages) == 0 {
+		messages = append(messages, "Too Many Requests")
+	}
+	Error(w, messages[0], http.StatusTooManyRequests)
+}
+
+func ErrorLocked(w http.ResponseWriter, messages ...string) {
+	if len(messages) == 0 {
+		messages = append(messages, "Request Temporary Blocked")
+	}
+	Error(w, messages[0], http.StatusLocked)
+}
