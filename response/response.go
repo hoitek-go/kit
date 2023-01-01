@@ -32,13 +32,6 @@ func ErrorBadRequest(messages ...string) ErrorResponse {
 	return Error(messages[0], http.StatusBadRequest)
 }
 
-func ErrorNotFound(messages ...string) ErrorResponse {
-	if len(messages) == 0 {
-		messages = append(messages, "Not Found")
-	}
-	return Error(messages[0], http.StatusNotFound)
-}
-
 func ErrorUnAuthorized(messages ...string) ErrorResponse {
 	if len(messages) == 0 {
 		messages = append(messages, "Not Logged In")
@@ -53,11 +46,11 @@ func ErrorForbidden(messages ...string) ErrorResponse {
 	return Error(messages[0], http.StatusForbidden)
 }
 
-func ErrorInternalServerError(messages ...string) ErrorResponse {
+func ErrorNotFound(messages ...string) ErrorResponse {
 	if len(messages) == 0 {
-		messages = append(messages, "Something Went Wrong")
+		messages = append(messages, "Not Found")
 	}
-	return Error(messages[0], http.StatusInternalServerError)
+	return Error(messages[0], http.StatusNotFound)
 }
 
 func ErrorMethodNotAllowed(messages ...string) ErrorResponse {
@@ -67,11 +60,11 @@ func ErrorMethodNotAllowed(messages ...string) ErrorResponse {
 	return Error(messages[0], http.StatusMethodNotAllowed)
 }
 
-func ErrorTooManyRequests(messages ...string) ErrorResponse {
+func ErrorUnprocessableEntity(messages ...string) ErrorResponse {
 	if len(messages) == 0 {
-		messages = append(messages, "Too Many Requests")
+		messages = append(messages, "Request Temporary Blocked")
 	}
-	return Error(messages[0], http.StatusTooManyRequests)
+	return Error(messages[0], http.StatusUnprocessableEntity)
 }
 
 func ErrorLocked(messages ...string) ErrorResponse {
@@ -79,4 +72,18 @@ func ErrorLocked(messages ...string) ErrorResponse {
 		messages = append(messages, "Request Temporary Blocked")
 	}
 	return Error(messages[0], http.StatusLocked)
+}
+
+func ErrorTooManyRequests(messages ...string) ErrorResponse {
+	if len(messages) == 0 {
+		messages = append(messages, "Too Many Requests")
+	}
+	return Error(messages[0], http.StatusTooManyRequests)
+}
+
+func ErrorInternalServerError(messages ...string) ErrorResponse {
+	if len(messages) == 0 {
+		messages = append(messages, "Something Went Wrong")
+	}
+	return Error(messages[0], http.StatusInternalServerError)
 }
