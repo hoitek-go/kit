@@ -6,7 +6,7 @@ import (
 )
 
 type Response interface {
-	ErrorResponse | SuccessResponse
+	ErrorResponse | SuccessResponse | any
 }
 
 func JsonWithWriter[T Response](w http.ResponseWriter, data T, statusCode int) {
