@@ -4,25 +4,42 @@ import (
 	"net/http"
 )
 
-type ErrorResponse = map[string]interface{}
+type ErrorResponse struct {
+	StatusCode int
+	Data       interface{}
+	Message    string
+}
 
-func BuildErrorResponse(data interface{}, statusCode int) ErrorResponse {
+type SuccessResponse struct {
+	StatusCode int
+	Data       interface{}
+}
+
+func BuildErrorResponse(data interface{}, statusCode int, message string) ErrorResponse {
 	return ErrorResponse{
-		"statusCode": statusCode,
-		"data":       data,
+		StatusCode: statusCode,
+		Data:       data,
+		Message:    message,
 	}
 }
 
-func Success(data interface{}) ErrorResponse {
-	return BuildErrorResponse(data, 200)
+func BuildSuccessResponse(data interface{}, statusCode int) SuccessResponse {
+	return SuccessResponse{
+		StatusCode: statusCode,
+		Data:       data,
+	}
+}
+
+func Success(data interface{}) SuccessResponse {
+	return BuildSuccessResponse(data, http.StatusOK)
 }
 
 func Error(data interface{}, statusCode int, messages ...string) ErrorResponse {
-	errResponse := BuildErrorResponse(data, statusCode)
+	message := ""
 	if len(messages) > 0 {
-		errResponse["message"] = messages[0]
+		message = messages[0]
 	}
-	return errResponse
+	return BuildErrorResponse(data, statusCode, message)
 }
 
 func ErrorBadRequest(data interface{}, messages ...string) ErrorResponse {
