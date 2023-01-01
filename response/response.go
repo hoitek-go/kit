@@ -104,3 +104,10 @@ func ErrorInternalServerError(data interface{}, messages ...string) ErrorRespons
 	}
 	return Error(data, http.StatusInternalServerError, messages[0])
 }
+
+func ErrorRequestEntityTooLarge(data interface{}, messages ...string) ErrorResponse {
+	if len(messages) == 0 {
+		messages = append(messages, "Request Entity Too Large")
+	}
+	return Error(data, http.StatusRequestEntityTooLarge, messages[0])
+}
