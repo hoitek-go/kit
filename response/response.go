@@ -25,65 +25,65 @@ func Error(data interface{}, statusCode int, messages ...string) ErrorResponse {
 	return errResponse
 }
 
-func ErrorBadRequest(messages ...string) ErrorResponse {
+func ErrorBadRequest(data interface{}, messages ...string) ErrorResponse {
 	if len(messages) == 0 {
 		messages = append(messages, "Bad Request")
 	}
-	return Error(messages[0], http.StatusBadRequest)
+	return Error(data, http.StatusBadRequest, messages[0])
 }
 
-func ErrorUnAuthorized(messages ...string) ErrorResponse {
+func ErrorUnAuthorized(data interface{}, messages ...string) ErrorResponse {
 	if len(messages) == 0 {
 		messages = append(messages, "Not Logged In")
 	}
-	return Error(messages[0], http.StatusUnauthorized)
+	return Error(data, http.StatusUnauthorized, messages[0])
 }
 
-func ErrorForbidden(messages ...string) ErrorResponse {
+func ErrorForbidden(data interface{}, messages ...string) ErrorResponse {
 	if len(messages) == 0 {
 		messages = append(messages, "Access Denied")
 	}
-	return Error(messages[0], http.StatusForbidden)
+	return Error(data, http.StatusForbidden, messages[0])
 }
 
-func ErrorNotFound(messages ...string) ErrorResponse {
+func ErrorNotFound(data interface{}, messages ...string) ErrorResponse {
 	if len(messages) == 0 {
 		messages = append(messages, "Not Found")
 	}
-	return Error(messages[0], http.StatusNotFound)
+	return Error(data, http.StatusNotFound, messages[0])
 }
 
-func ErrorMethodNotAllowed(messages ...string) ErrorResponse {
+func ErrorMethodNotAllowed(data interface{}, messages ...string) ErrorResponse {
 	if len(messages) == 0 {
 		messages = append(messages, "Method Not Allowed")
 	}
-	return Error(messages[0], http.StatusMethodNotAllowed)
+	return Error(data, http.StatusMethodNotAllowed, messages[0])
 }
 
-func ErrorUnprocessableEntity(messages ...string) ErrorResponse {
+func ErrorUnprocessableEntity(data interface{}, messages ...string) ErrorResponse {
 	if len(messages) == 0 {
 		messages = append(messages, "Request Temporary Blocked")
 	}
-	return Error(messages[0], http.StatusUnprocessableEntity)
+	return Error(data, http.StatusUnprocessableEntity, messages[0])
 }
 
-func ErrorLocked(messages ...string) ErrorResponse {
+func ErrorLocked(data interface{}, messages ...string) ErrorResponse {
 	if len(messages) == 0 {
 		messages = append(messages, "Request Temporary Blocked")
 	}
-	return Error(messages[0], http.StatusLocked)
+	return Error(data, http.StatusLocked, messages[0])
 }
 
-func ErrorTooManyRequests(messages ...string) ErrorResponse {
+func ErrorTooManyRequests(data interface{}, messages ...string) ErrorResponse {
 	if len(messages) == 0 {
 		messages = append(messages, "Too Many Requests")
 	}
-	return Error(messages[0], http.StatusTooManyRequests)
+	return Error(data, http.StatusTooManyRequests, messages[0])
 }
 
-func ErrorInternalServerError(messages ...string) ErrorResponse {
+func ErrorInternalServerError(data interface{}, messages ...string) ErrorResponse {
 	if len(messages) == 0 {
 		messages = append(messages, "Something Went Wrong")
 	}
-	return Error(messages[0], http.StatusInternalServerError)
+	return Error(data, http.StatusInternalServerError, messages[0])
 }
