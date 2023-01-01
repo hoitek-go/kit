@@ -2,11 +2,13 @@ package response
 
 import "net/http"
 
-type HandleResponse struct {
-	Fn func(w http.ResponseWriter, r *http.Request) Response
+type HandlerFunc = func(w http.ResponseWriter, r *http.Request) Response
+
+type Handler struct {
+	Fn HandlerFunc
 }
 
-func (h HandleResponse) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	result := h.Fn(w, r)
 	switch result.(type) {
 	case ErrorResponse:
@@ -16,4 +18,8 @@ func (h HandleResponse) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		data := result.(SuccessResponse)
 		JsonWithWriter(w, data, data.StatusCode)
 	}
+}
+
+func Handle(fn HandlerFunc) Handler {
+	return Handler{Fn: fn}
 }
