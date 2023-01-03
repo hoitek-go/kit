@@ -5,14 +5,14 @@ import (
 )
 
 type ErrorResponse struct {
-	StatusCode int
-	Data       interface{}
-	Message    string
+	StatusCode int         `json:"statusCode"`
+	Data       interface{} `json:"data"`
+	Message    string      `json:"message"`
 }
 
 type SuccessResponse struct {
-	StatusCode int
-	Data       interface{}
+	StatusCode int         `json:"statusCode"`
+	Data       interface{} `json:"data"`
 }
 
 func BuildErrorResponse(data interface{}, statusCode int, message string) ErrorResponse {
