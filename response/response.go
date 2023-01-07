@@ -34,6 +34,22 @@ func Success(data interface{}) SuccessResponse {
 	return BuildSuccessResponse(data, http.StatusOK)
 }
 
+func Created(data interface{}) SuccessResponse {
+	return BuildSuccessResponse(data, http.StatusCreated)
+}
+
+func Accepted(data interface{}) SuccessResponse {
+	return BuildSuccessResponse(data, http.StatusAccepted)
+}
+
+func NoContent(data interface{}) SuccessResponse {
+	return BuildSuccessResponse(data, http.StatusNoContent)
+}
+
+func AlreadyReported(data interface{}) SuccessResponse {
+	return BuildSuccessResponse(data, http.StatusAlreadyReported)
+}
+
 func Error(data interface{}, statusCode int, messages ...string) ErrorResponse {
 	message := ""
 	if len(messages) > 0 {
@@ -110,4 +126,11 @@ func ErrorRequestEntityTooLarge(data interface{}, messages ...string) ErrorRespo
 		messages = append(messages, "Request Entity Too Large")
 	}
 	return Error(data, http.StatusRequestEntityTooLarge, messages[0])
+}
+
+func ErrorUpgradeRequired(data interface{}, messages ...string) ErrorResponse {
+	if len(messages) == 0 {
+		messages = append(messages, "Upgrade Your Client")
+	}
+	return Error(data, http.StatusUpgradeRequired, messages[0])
 }
