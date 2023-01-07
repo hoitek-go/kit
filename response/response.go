@@ -42,8 +42,8 @@ func Accepted(data interface{}) SuccessResponse {
 	return BuildSuccessResponse(data, http.StatusAccepted)
 }
 
-func NoContent(data interface{}) SuccessResponse {
-	return BuildSuccessResponse(data, http.StatusNoContent)
+func NoContent() SuccessResponse {
+	return BuildSuccessResponse("", http.StatusNoContent)
 }
 
 func AlreadyReported(data interface{}) SuccessResponse {
