@@ -132,5 +132,6 @@ func ErrorUpgradeRequired(data interface{}, messages ...string) ErrorResponse {
 	if len(messages) == 0 {
 		messages = append(messages, "Upgrade Your Client")
 	}
+
 	return Error(data, http.StatusUpgradeRequired, messages[0])
 }
