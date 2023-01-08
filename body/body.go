@@ -3,7 +3,15 @@ package body
 import (
 	"encoding/json"
 	"io"
+	"math"
 	"net/http"
+)
+
+var (
+	IsTestMarshal         = false
+	IsTestUnMarshal       = false
+	IsTestParsedData      = false
+	IsTestResultUnMarshal = false
 )
 
 func Bind(r *http.Request, result any) error {
@@ -23,11 +31,18 @@ func Bind(r *http.Request, result any) error {
 		}
 	} else {
 		data, err := json.Marshal(r.Form)
+		if IsTestMarshal {
+			data, err = json.Marshal(math.Inf(1))
+		}
 		if err != nil {
 			return err
 		}
 		dataMap := make(map[string][]interface{})
 		err = json.Unmarshal(data, &dataMap)
+		if IsTestUnMarshal {
+			var test *int = nil
+			err = json.Unmarshal(data, test)
+		}
 		if err != nil {
 			return err
 		}
@@ -36,10 +51,17 @@ func Bind(r *http.Request, result any) error {
 		}
 	}
 	byteArray, err := json.Marshal(parsedData)
+	if IsTestParsedData {
+		byteArray, err = json.Marshal(math.Inf(1))
+	}
 	if err != nil {
 		return err
 	}
-	if err = json.Unmarshal(byteArray, result); err != nil {
+	if IsTestResultUnMarshal {
+		result = nil
+	}
+	err = json.Unmarshal(byteArray, result)
+	if err != nil {
 		return err
 	}
 	return nil
