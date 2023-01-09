@@ -82,3 +82,12 @@ github.com/hoitek-go/kit/response/responseWithWriter.go:22.75,24.2 1 1
 github.com/hoitek-go/kit/response/responseWithWriter.go:26.116,27.23 1 1
 github.com/hoitek-go/kit/response/responseWithWriter.go:30.2,30.53 1 1
 github.com/hoitek-go/kit/response/responseWithWriter.go:27.23,29.3 1 1
+github.com/hoitek-go/kit/retry/retry.go:8.86,11.6 3 1
+github.com/hoitek-go/kit/retry/retry.go:27.2,27.20 1 1
+github.com/hoitek-go/kit/retry/retry.go:11.6,12.21 1 1
+github.com/hoitek-go/kit/retry/retry.go:18.3,18.17 1 1
+github.com/hoitek-go/kit/retry/retry.go:21.3,25.11 5 1
+github.com/hoitek-go/kit/retry/retry.go:12.21,13.18 1 1
+github.com/hoitek-go/kit/retry/retry.go:16.4,16.9 1 0
+github.com/hoitek-go/kit/retry/retry.go:13.18,15.5 1 1
+github.com/hoitek-go/kit/retry/retry.go:18.17,19.9 1 1
