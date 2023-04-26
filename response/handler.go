@@ -13,7 +13,10 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch result.(type) {
 	case ErrorResponse:
 		err := result.(ErrorResponse)
-		JsonWithWriter(w, err, err.StatusCode)
+		JsonWithWriter(w, map[string]interface{}{
+			"errors":  err.Data,
+			"message": err.Message,
+		}, err.StatusCode)
 	case SuccessResponse:
 		data := result.(SuccessResponse)
 		JsonWithWriter(w, data, data.StatusCode)
