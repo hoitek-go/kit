@@ -14,8 +14,8 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	case ErrorResponse:
 		err := result.(ErrorResponse)
 		JsonWithWriter(w, map[string]interface{}{
-			"errors":  err.Data,
-			"message": err.Message,
+			"errors":  nil,
+			"message": err.Data,
 		}, err.StatusCode)
 	case SuccessResponse:
 		data := result.(SuccessResponse)
